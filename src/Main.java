@@ -154,10 +154,10 @@ public class Main extends Application {
             for (int i=0; i< N; i++) {
                 for (int j=0; j < M;j++) {
                     board[i][j] = '.';
-                    System.out.print(board[i][j]); //buangcotar
-                    System.out.print(" ");//buangcotar
+                    System.out.print(board[i][j]); 
+                    System.out.print(" ");
                 }
-                System.out.println("\n");//buangcotar
+                System.out.println("\n");
             }
 
             pieces.clear();
@@ -184,6 +184,19 @@ public class Main extends Application {
             }
             //testbantu
             savePiece(shapeLines);
+
+            //validasi piece count
+            if (pieces.size() != P) {
+                throw new IllegalArgumentException(
+                    String.format("Jumlah piece tidak sesuai! Diharapkan: %d, Ditemukan: %d", 
+                    P, pieces.size())
+                );
+            }
+
+            textArea.clear();
+            textArea.appendText(String.format("Dimensi Board: %dx%d\n", N, M));
+            textArea.appendText(String.format("Jumlah Piece: %d\n", P));
+            textArea.appendText("Pieces berhasil dimuat!\n");
 
             //bwt debug dlu
             for (int i = 0; i < pieces.size(); i++) {
@@ -231,12 +244,12 @@ public class Main extends Application {
         //cek ada overlap ga
         for (int i = 0; i < pieceRows; i++) {
             for (int j = 0; j < pieceCols; j++) {
-                if (piece[i][j] != '.') {  // Jika bagian piece bukan kosong
-                    if (board[startRow + i][startCol + j] != '.') {  // Dan board sudah terisi
-                        return false;  // Berarti overlap
+                if (piece[i][j] != '.') {  //jika bagian piece bukan kosong
+                    if (board[startRow + i][startCol + j] != '.') {  //dan board sudah terisi
+                        return false;  //berarti overlap
                     }
                 }
-            }
+            } 
         }
         return true;
     }
