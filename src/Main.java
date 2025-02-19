@@ -182,7 +182,7 @@ public class Main extends Application {
                 }
                 currentChar = firstChar;
             }
-
+            //testbantu
             savePiece(shapeLines);
 
             //bwt debug dlu
