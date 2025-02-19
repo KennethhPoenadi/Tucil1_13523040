@@ -24,7 +24,7 @@ public class Main extends Application {
     private TextArea textArea;
     private VBox boardContainer;
     private char[][]board;
-    private int totallangkah = 0;
+    private long totallangkah = 0;
 
     @Override
     public void start(Stage primaryStage) {
