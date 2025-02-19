@@ -65,7 +65,7 @@ public class Main extends Application {
                     showAlert("Error", "Silakan load file terlebih dahulu!");
                 } else {
                     resetBoard(board);
-                    totallangkah = 0; // Reset langkah
+                    totallangkah = 0; //reset langkah
                     
                     long startTime = System.currentTimeMillis();
                     if (solvePuzzle(new ArrayList<>(pieces), board)) {
@@ -277,9 +277,9 @@ public class Main extends Application {
         for (int rotation = 0; rotation < 4; rotation++) {
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[0].length; j++) {
+                    totallangkah++; 
                     if (taruhPiece(board, rotatedPiece, i, j)) {
                         placePiece(board, rotatedPiece, i, j);
-                        totallangkah++; 
     
                         if (solvePuzzle(nextPieces, board)) {
                             return true;
