@@ -338,9 +338,6 @@ public class Main extends Application {
     //fungsi untuk menggambar papan puzzle di GUI
     private void drawBoard() {
         boardContainer.getChildren().clear();
-        
-        //nampilin jumlah langkah
-        textArea.clear();
     
         switch (caseType) {
             default:
