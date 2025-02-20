@@ -144,34 +144,42 @@ public class Main extends Application {
             int P = scanner.nextInt();
             scanner.nextLine();
             caseType = scanner.nextLine().trim();
-
+    
             if (!caseType.equals("DEFAULT")) {
                 throw new IllegalArgumentException("Tipe kasus tidak valid. Harus 'DEFAULT', hehe ga bikin bonus yang lain.");
             }
-
+    
             board = new char[N][M];
             //inisialisasi
-            for (int i=0; i< N; i++) {
-                for (int j=0; j < M;j++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
                     board[i][j] = '.';
                     System.out.print(board[i][j]); 
                     System.out.print(" ");
                 }
                 System.out.println("\n");
             }
-
+    
             pieces.clear();
-
+    
             List<String> shapeLines = new ArrayList<>();
             char currentChar = '\0'; //inisialisasi karakter pertama dl
-
+    
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine().trim();
-                if (line.isEmpty()) continue;
-
-                char firstChar = line.charAt(0);
-
-                if (currentChar == '\0' || firstChar == currentChar) {
+                String line = scanner.nextLine();
+                if (line.trim().isEmpty()) continue;
+    
+                char firstNonSpace = ' ';
+                for (char c : line.toCharArray()) {
+                    if (c != ' ') {
+                        firstNonSpace = c;
+                        break;
+                    }
+                }
+    
+                if (firstNonSpace == ' ') continue;
+    
+                if (currentChar == '\0' || firstNonSpace == currentChar) {
                     //cek karakter pertama masih sama dengan yang sebelumnya jd lanjut ke piece yang sama
                     shapeLines.add(line);
                 } else {
@@ -180,11 +188,11 @@ public class Main extends Application {
                     shapeLines.clear();
                     shapeLines.add(line);
                 }
-                currentChar = firstChar;
+                currentChar = firstNonSpace;
             }
             //testbantu
             savePiece(shapeLines);
-
+    
             //validasi piece count
             if (pieces.size() != P) {
                 throw new IllegalArgumentException(
@@ -192,12 +200,12 @@ public class Main extends Application {
                     P, pieces.size())
                 );
             }
-
+    
             textArea.clear();
             textArea.appendText(String.format("Dimensi Board: %dx%d\n", N, M));
             textArea.appendText(String.format("Jumlah Piece: %d\n", P));
             textArea.appendText("Pieces berhasil dimuat!\n");
-
+    
             //bwt debug dlu
             for (int i = 0; i < pieces.size(); i++) {
                 System.out.println("Piece " + (i + 1) + ":");
@@ -206,8 +214,7 @@ public class Main extends Application {
                 }
                 System.out.println();
             }
-
-
+    
         } catch (FileNotFoundException e) {
             showAlert("Error", "File tidak ditemukan.");
         } catch (IllegalArgumentException e) {
@@ -276,9 +283,21 @@ public class Main extends Application {
         }
     }
 
+    private char[][] mirrorPiece(char[][] piece) {
+        int rows = piece.length;
+        int cols = piece[0].length;
+        char[][] mirrored = new char[rows][cols];
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                mirrored[i][cols - 1 - j] = piece[i][j];
+            }
+        }
+        return mirrored;
+    }
+
     //fungsi utama
     private boolean solvePuzzle(List<char[][]> remainingPieces, char[][] board) {
-        // Jika semua piece sudah ditaruh, cek apakah board sudah terisi penuh
         if (remainingPieces.isEmpty()) {
             return isBoardComplete();
         }
@@ -286,25 +305,31 @@ public class Main extends Application {
         char[][] currentPiece = remainingPieces.get(0);
         List<char[][]> nextPieces = new ArrayList<>(remainingPieces.subList(1, remainingPieces.size()));
     
-        char[][] rotatedPiece = currentPiece;
-        for (int rotation = 0; rotation < 4; rotation++) {
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[0].length; j++) {
-                    totallangkah++; 
-                    if (taruhPiece(board, rotatedPiece, i, j)) {
-                        placePiece(board, rotatedPiece, i, j);
-    
-                        if (solvePuzzle(nextPieces, board)) {
-                            return true;
+        char[][] pieceToTry = currentPiece;
+        char[][] mirroredPiece = mirrorPiece(currentPiece);
+        
+        for (int mirror = 0; mirror < 2; mirror++) {
+            char[][] currentOrientation = (mirror == 0) ? pieceToTry : mirroredPiece;
+            
+            for (int rotation = 0; rotation < 4; rotation++) {
+                for (int i = 0; i < board.length; i++) {
+                    for (int j = 0; j < board[0].length; j++) {
+                        totallangkah++;
+                        if (taruhPiece(board, currentOrientation, i, j)) {
+                            placePiece(board, currentOrientation, i, j);
+                            
+                            if (solvePuzzle(nextPieces, board)) {
+                                return true;
+                            }
+                            
+                            removePiece(board, currentOrientation, i, j);
                         }
-    
-                        removePiece(board, rotatedPiece, i, j);
                     }
                 }
+                currentOrientation = rotasipiece(currentOrientation);
             }
-            rotatedPiece = rotasipiece(rotatedPiece);
         }
-    
+        
         return false;
     }
     
@@ -317,10 +342,18 @@ public class Main extends Application {
         char[][] pieceMatrix = new char[rows][cols];
     
         for (int i = 0; i < rows; i++) {
-            String row = shapeLines.get(i);
             Arrays.fill(pieceMatrix[i], '.');
+        }
+    
+        for (int i = 0; i < rows; i++) {
+            String row = shapeLines.get(i);
             for (int j = 0; j < row.length(); j++) {
-                pieceMatrix[i][j] = row.charAt(j);
+                char c = row.charAt(j);
+                if (c != ' ') {
+                    pieceMatrix[i][j] = c;
+                } else {
+                    pieceMatrix[i][j] = '.';
+                }
             }
         }
     
