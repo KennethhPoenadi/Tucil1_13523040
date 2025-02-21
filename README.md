@@ -17,7 +17,7 @@ Program **Puzzle Sigma Solver** adalah sebuah program yang menggunakan algoritma
 3. Instalasi Git apabila belum pada https://git-scm.com/downloads ,sesuai dengan operating system masing-masing
 4. Inisialisasi repository pada terminal code editor apapun, dengan menjalankan git init
 5. Masukkan alamat remote repository dengan git remote add origin https://github.com/KennethhPoenadi/Tucil1_13523040.git
-6, Jalankan command git checkout origin main
+6. Jalankan command git checkout origin main
 7. Jalankan git pull origin main
 8. Extract file javafx yang telah di download, lalu copy pathnya
 9. Navigasi ke .vscode, lalu ubah Vmargs, dan ubahlah path yang ada menjadi path yang telah di copy tadi, jangan lupa untuk \\ untuk dapat membaca \
