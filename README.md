@@ -16,7 +16,7 @@ Program **Puzzle Sigma Solver** adalah sebuah program yang menggunakan algoritma
 2. Download JavaFX terbaru yang dapat diinstalasi pada https://openjfx.io
 3. Instalasi Git apabila belum pada https://git-scm.com/downloads ,sesuai dengan operating system masing-masing
 4. Inisialisasi repository pada terminal code editor apapun, dengan menjalankan git init
-5. Masukkan alamat remote repository dengan git remote add origin XXXX (XXXX adalah alamat repository ini)
+5. Masukkan alamat remote repository dengan git remote add origin https://github.com/KennethhPoenadi/Tucil1_13523040.git
 6, Jalankan command git checkout origin main
 7. Jalankan git pull origin main
 8. Extract file javafx yang telah di download, lalu copy pathnya
