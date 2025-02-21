@@ -12,4 +12,22 @@ Program **Puzzle Sigma Solver** adalah sebuah program yang menggunakan algoritma
 
 **Instalasi Program**
 
-1. Download Java23 yang dapat didapatkan pada 
+1. Download Java23 yang dapat didapatkan pada https://www.oracle.com/id/java/technologies/downloads/ , disesuaikan untuk operating system masing-masing
+2. Download JavaFX terbaru yang dapat diinstalasi pada https://openjfx.io
+3. Instalasi Git apabila belum pada https://git-scm.com/downloads ,sesuai dengan operating system masing-masing
+4. Inisialisasi repository pada terminal code editor apapun, dengan menjalankan git init
+5. Masukkan alamat remote repository dengan git remote add origin XXXX (XXXX adalah alamat repository ini)
+6, Jalankan command git checkout origin main
+7. Jalankan git pull origin main
+8. Extract file javafx yang telah di download, lalu copy pathnya
+9. Navigasi ke .vscode, lalu ubah Vmargs, dan ubahlah path yang ada menjadi path yang telah di copy tadi, jangan lupa untuk \\ untuk dapat membaca \
+10. Apabila sudah, dapat melakukan instalasi extension pada code editor dan memencet tombol run atau melakukan compile dengan melakukan //todo dan setelah berhasil menjalankan dengan //todo
+11. Program dapat dijalankan!
+
+Selamat bereksperimen dan menyelesaikan puzzle dengan mudah!
+
+Author,
+
+Kenneth Poenadi 
+13523040
+
