@@ -21,7 +21,7 @@ Program **Puzzle Sigma Solver** adalah sebuah program yang menggunakan algoritma
 7. Jalankan git pull origin main
 8. Extract file javafx yang telah di download, lalu copy pathnya
 9. Navigasi ke .vscode, lalu ubah Vmargs, dan ubahlah path yang ada menjadi path yang telah di copy tadi, jangan lupa untuk \\ untuk dapat membaca \
-10. Apabila sudah, dapat melakukan instalasi extension pada code editor dan memencet tombol run atau melakukan compile dengan melakukan //todo dan setelah berhasil menjalankan dengan //todo
+10. Apabila sudah, dapat melakukan instalasi extension pada code editor dan memencet tombol run atau melakukan compile dengan melakukan javac --module-path "C:\Users\kenne\Downloads\openjfx-23.0.2_windows-x64_bin-sdk\javafx-sdk-23.0.2\lib" --add-modules javafx.controls,javafx.fxml,javafx.swing -d bin src/Main.java (diubah sesuai path javafx) dan setelah berhasil menjalankan dengan java --module-path "C:\Users\kenne\Downloads\openjfx-23.0.2_windows-x64_bin-sdk\javafx-sdk-23.0.2\lib" --add-modules javafx.controls,javafx.fxml,javafx.swing -cp bin Main (diubah sesuai path javafx)
 11. Program dapat dijalankan!
 
 Selamat bereksperimen dan menyelesaikan puzzle dengan mudah!
