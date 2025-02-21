@@ -1,0 +1,8 @@
+<===> Hasil Solusi Puzzle <===>
+Waktu Eksekusi: 0 ms
+Total Langkah: 45
+
+Konfigurasi Board:
+A B C 
+D E F 
+G H I 
